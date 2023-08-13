@@ -1,4 +1,5 @@
 ﻿using HotelManagement.Entities;
+using HotelManagement.Entities.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

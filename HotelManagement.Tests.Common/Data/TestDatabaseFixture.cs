@@ -1,4 +1,5 @@
 ﻿using HotelManagement.Entities;
+using HotelManagement.Entities.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Tests.Common.Data

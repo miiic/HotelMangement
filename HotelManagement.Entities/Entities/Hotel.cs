@@ -1,4 +1,4 @@
-﻿namespace HotelManagement.Entities
+﻿namespace HotelManagement.Entities.Entities
 {
     public class Hotel
     {

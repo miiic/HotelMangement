@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HotelManagement.Entities.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Entities
 {
