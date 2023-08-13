@@ -1,6 +1,5 @@
 ﻿using HotelManagement.Entities;
 using HotelManagement.Entities.Entities;
-using HotelManagement.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
