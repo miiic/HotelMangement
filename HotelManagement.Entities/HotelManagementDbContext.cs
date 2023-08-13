@@ -2,7 +2,7 @@
 
 namespace HotelManagement.Entities
 {
-    public class HotelManagementDbContext : DbContext
+    public class HotelManagementDbContext : DbContext, IHotelManagementDbContext
     {
         public HotelManagementDbContext(DbContextOptions<HotelManagementDbContext> options) : base(options) { }
 

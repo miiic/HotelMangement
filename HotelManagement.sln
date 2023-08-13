@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Web", "Hote
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Entities", "HotelManagement.Entities\HotelManagement.Entities.csproj", "{96602FB3-0678-4B79-A072-EC364ADD2C1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement.Operations", "HotelManagement.Operations\HotelManagement.Operations.csproj", "{0FC8A0CE-1886-4C54-A890-D111DAA5C626}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Operations", "HotelManagement.Operations\HotelManagement.Operations.csproj", "{0FC8A0CE-1886-4C54-A890-D111DAA5C626}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{885D4F3F-E95D-4579-8A09-9BA280364FCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement.Operations.Tests", "HotelManagement.Operations.Tests\HotelManagement.Operations.Tests.csproj", "{C40F7F08-4811-471F-B324-1DA68F8BE98D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement.Tests.Common", "HotelManagement.Tests.Common\HotelManagement.Tests.Common.csproj", "{A69429FB-CB87-40F8-9181-6E78A20869A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +33,21 @@ Global
 		{0FC8A0CE-1886-4C54-A890-D111DAA5C626}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FC8A0CE-1886-4C54-A890-D111DAA5C626}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FC8A0CE-1886-4C54-A890-D111DAA5C626}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C40F7F08-4811-471F-B324-1DA68F8BE98D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C40F7F08-4811-471F-B324-1DA68F8BE98D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C40F7F08-4811-471F-B324-1DA68F8BE98D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C40F7F08-4811-471F-B324-1DA68F8BE98D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A69429FB-CB87-40F8-9181-6E78A20869A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A69429FB-CB87-40F8-9181-6E78A20869A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A69429FB-CB87-40F8-9181-6E78A20869A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A69429FB-CB87-40F8-9181-6E78A20869A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C40F7F08-4811-471F-B324-1DA68F8BE98D} = {885D4F3F-E95D-4579-8A09-9BA280364FCA}
+		{A69429FB-CB87-40F8-9181-6E78A20869A3} = {885D4F3F-E95D-4579-8A09-9BA280364FCA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4CDB49D0-D303-4284-9B79-D492E3E2275E}

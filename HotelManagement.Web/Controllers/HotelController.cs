@@ -10,9 +10,16 @@ namespace HotelManagement.Web.Controllers
     public class HotelController : ControllerBase
     {
         private readonly IMediator _mediator;
-        public ActionResult<Hotel> Get(string name)
+
+        public HotelController(IMediator mediator)
         {
-            return Ok(_mediator.Send(new GetHotelByNameQuery(name)));
+            _mediator = mediator;
+        }
+
+        [HttpGet]
+        public ActionResult<Hotel> Get(string name, CancellationToken ct = default)
+        {
+            return Ok(_mediator.Send(new GetHotelByNameQuery(name), ct));
         }
     }
 }

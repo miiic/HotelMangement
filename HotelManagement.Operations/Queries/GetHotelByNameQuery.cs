@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Operations.Queries
 {
@@ -22,9 +23,10 @@ namespace HotelManagement.Operations.Queries
             _context = context;
         }
 
-        public Task<Hotel> Handle(GetHotelByNameQuery request, CancellationToken cancellationToken)
+        public async Task<Hotel> Handle(GetHotelByNameQuery request, CancellationToken ct)
         {
-            throw new NotImplementedException();
+            return await _context.Hotels
+                .Where(h => h.Name == request.Name).FirstOrDefaultAsync(ct);
         }
     }
 }

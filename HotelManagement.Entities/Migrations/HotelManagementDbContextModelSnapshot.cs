@@ -80,7 +80,7 @@ namespace HotelManagement.Entities.Migrations
             modelBuilder.Entity("HotelManagement.Entities.Booking", b =>
                 {
                     b.HasOne("HotelManagement.Entities.Room", "Room")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("RoomId");
 
                     b.Navigation("Room");
@@ -98,6 +98,11 @@ namespace HotelManagement.Entities.Migrations
             modelBuilder.Entity("HotelManagement.Entities.Hotel", b =>
                 {
                     b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("HotelManagement.Entities.Room", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

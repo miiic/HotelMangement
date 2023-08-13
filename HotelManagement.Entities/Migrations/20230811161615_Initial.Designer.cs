@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HotelManagement.Entities.Migrations
 {
     [DbContext(typeof(HotelManagementDbContext))]
-    [Migration("20230810185036_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230811161615_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -82,7 +82,7 @@ namespace HotelManagement.Entities.Migrations
             modelBuilder.Entity("HotelManagement.Entities.Booking", b =>
                 {
                     b.HasOne("HotelManagement.Entities.Room", "Room")
-                        .WithMany()
+                        .WithMany("Bookings")
                         .HasForeignKey("RoomId");
 
                     b.Navigation("Room");
@@ -100,6 +100,11 @@ namespace HotelManagement.Entities.Migrations
             modelBuilder.Entity("HotelManagement.Entities.Hotel", b =>
                 {
                     b.Navigation("Rooms");
+                });
+
+            modelBuilder.Entity("HotelManagement.Entities.Room", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }
