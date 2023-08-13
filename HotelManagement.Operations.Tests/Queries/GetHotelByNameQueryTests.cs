@@ -26,5 +26,21 @@ namespace HotelManagement.Operations.Tests.Queries
             hotel.Name.Should().Be(hotelName);
         }
 
+        [Fact]
+        public async Task Handle_ShouldReturnNull_WhenHotelNameHasNoMatches()
+        {
+            //Arrange
+            using var context = Fixture.CreateContext();
+            var hotelName = "NotHotel1";
+            var query = new GetHotelByNameQuery(hotelName);
+            var handler = new GetHotelByNameQueryHandler(context);
+
+            //Act
+            var hotel = await handler.Handle(query, CancellationToken.None);
+
+            //Assert
+            hotel.Should().Be(null);
+        }
+
     }
 }

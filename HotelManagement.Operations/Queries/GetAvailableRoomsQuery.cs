@@ -29,7 +29,7 @@ namespace HotelManagement.Operations.Queries
         {
             _context = context;
         }
-        //https://www.codeproject.com/Questions/1186526/Linq-expression-to-check-availability-of-room-of-c
+
         public async Task<ICollection<Room>> Handle(GetAvailableRoomsQuery request, CancellationToken ct)
         {
             return await _context.Rooms
@@ -37,7 +37,8 @@ namespace HotelManagement.Operations.Queries
                     r.Hotel.Name == request.HotelName &&
                     r.Capacity >= request.Occupancy
                 )
-               .Where(r => r.Bookings.All(b => b.Arrival < request.Arrival || b.Departure > request.Departure)).ToListAsync(ct);
+               .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure)).ToListAsync(ct);
+               //.Where(r => !r.Bookings.Any(b => b.Departure >= request.Arrival && b.Arrival <= request.Departure)).ToListAsync(ct);
         }
     }
 }
