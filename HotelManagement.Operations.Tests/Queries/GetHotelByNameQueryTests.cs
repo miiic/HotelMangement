@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using HotelManagement.Operations.Queries;
 using HotelManagement.Tests.Common.Data;
-using NUnit.Framework;
 using Xunit;
 
 namespace HotelManagement.Operations.Tests.Queries
@@ -11,7 +10,7 @@ namespace HotelManagement.Operations.Tests.Queries
         public GetHotelByNameQueryTests(TestDatabaseFixture fixture) => Fixture = fixture;
         public TestDatabaseFixture Fixture { get; }
 
-        [Test]
+        [Fact]
         public async Task Handle_ShouldReturnHotel_WhenHotelNameMatches()
         {
             //Arrange

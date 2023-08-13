@@ -20,8 +20,8 @@ namespace HotelManagement.Tests.Common.Data
                         context.Database.EnsureDeleted();
                         context.Database.EnsureCreated();
                         context.AddRange(
-                        new Hotel { Name = "Hotel1" },
-                        new Hotel { Name = "Hotel2" });
+                            new Hotel { Name = "Hotel1" },
+                            new Hotel { Name = "Hotel2" });
                         context.SaveChanges();
                     }
                     _databaseInitialized = true;

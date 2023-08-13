@@ -6,9 +6,9 @@ namespace HotelManagement.Entities
     {
         public HotelManagementDbContext(DbContextOptions<HotelManagementDbContext> options) : base(options) { }
 
-        public DbSet<Hotel> Hotels { get; }
-        public DbSet<Booking> Bookings { get; }
-        public DbSet<Room> Rooms { get; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

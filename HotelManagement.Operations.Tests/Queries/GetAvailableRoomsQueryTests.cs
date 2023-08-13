@@ -1,13 +1,13 @@
 ﻿using HotelManagement.Entities;
 using HotelManagement.Operations.Queries;
 using NSubstitute;
-using NUnit.Framework;
+using Xunit;
 
 namespace HotelManagement.Operations.Tests.Queries
 {
     public class GetAvailableRoomsQueryTests
     {
-        [Test]
+        [Fact]
         public void Handle_ShouldReturnAvailableRooms_ForDateRange()
         {
             //Arrange
