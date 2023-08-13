@@ -1,22 +1,23 @@
 ﻿using HotelManagement.Entities;
 using HotelManagement.Entities.Models;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Operations.Commands
 {
     public class MakeBookingCommand : IRequest<BookingResponse>
     {
-        public MakeBookingCommand(string hotelName, int roomId, DateTime start, DateTime end)
+        public MakeBookingCommand(int roomId, DateTime arrival, DateTime departure)
         {
-            
+            RoomId = roomId;
+            Arrival = arrival;
+            Departure = departure;
         }
 
-        
+        public int RoomId { get; set; }
+        public DateTime Arrival { get; set; }
+        public DateTime Departure { get; set; }
+
     }
 
     public class MakeBookingCommandHandler : IRequestHandler<MakeBookingCommand, BookingResponse>
@@ -30,7 +31,23 @@ namespace HotelManagement.Operations.Commands
 
         public async Task<BookingResponse> Handle(MakeBookingCommand request, CancellationToken ct)
         {
-            return null;
+            var availableRoom = await _context.Rooms
+               .Where(r => r.Id >= request.RoomId)
+               .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure)).FirstOrDefaultAsync(ct);
+
+            if (availableRoom != null)
+            {
+                var booking = new Booking
+                {
+                    Room = availableRoom,
+                    Arrival = request.Arrival,
+                    Departure = request.Departure
+                };
+                _context.Bookings.Add(booking);
+                await _context.SaveChangesAsync(ct);
+                return new BookingResponse { BookingSuccess = true };
+            }
+            return new BookingResponse { BookingSuccess = false };
         }
     }
 }

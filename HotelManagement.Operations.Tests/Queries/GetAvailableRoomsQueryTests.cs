@@ -1,8 +1,6 @@
 ﻿using FluentAssertions;
-using HotelManagement.Entities;
 using HotelManagement.Operations.Queries;
 using HotelManagement.Tests.Common.Data;
-using NSubstitute;
 using Xunit;
 
 namespace HotelManagement.Operations.Tests.Queries
