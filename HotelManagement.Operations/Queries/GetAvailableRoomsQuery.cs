@@ -38,7 +38,6 @@ namespace HotelManagement.Operations.Queries
                     r.Capacity >= request.Occupancy
                 )
                .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure)).ToListAsync(ct);
-               //.Where(r => !r.Bookings.Any(b => b.Departure >= request.Arrival && b.Arrival <= request.Departure)).ToListAsync(ct);
         }
     }
 }
