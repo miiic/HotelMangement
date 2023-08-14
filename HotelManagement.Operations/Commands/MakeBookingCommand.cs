@@ -1,6 +1,6 @@
-﻿using HotelManagement.Entities;
+﻿using HotelManagement.Domain.Models.Responses;
+using HotelManagement.Entities;
 using HotelManagement.Entities.Entities;
-using HotelManagement.Entities.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -33,7 +33,7 @@ namespace HotelManagement.Operations.Commands
         public async Task<BookingResponse> Handle(MakeBookingCommand request, CancellationToken ct)
         {
             var availableRoom = await _context.Rooms
-               .Where(r => r.Id >= request.RoomId)
+               .Where(r => r.Id == request.RoomId)
                .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure)).FirstOrDefaultAsync(ct);
 
             if (availableRoom != null)

@@ -25,14 +25,13 @@ namespace HotelManagement.Operations.Tests.Commands
             var response = await handler.Handle(command, CancellationToken.None);
 
             //Assert
-            var debug = context.Bookings.ToList();
-            context.Bookings.FirstOrDefault(b => 
-                b.Room.Id == roomId && b.Arrival == arrival && b.Departure == departure).Should().NotBeNull();
+            var actualBooking = context.Bookings.Where(b => b.Room.Id == roomId && b.Arrival == arrival && b.Departure == departure);
+            actualBooking.Count().Should().Be(1);
             response.BookingSuccess.Should().BeTrue();
         }
 
         [Fact]
-        public async Task Handle_ShouldMakeBooking_WhenRoomIsNotAvailable()
+        public async Task Handle_ShouldNotMakeBooking_WhenRoomIsNotAvailable()
         {
             //Arrange
             using var context = Fixture.CreateContext();

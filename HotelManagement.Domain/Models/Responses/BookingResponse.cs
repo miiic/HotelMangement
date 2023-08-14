@@ -1,4 +1,4 @@
-﻿namespace HotelManagement.Entities.Models
+﻿namespace HotelManagement.Domain.Models.Responses
 {
     public class BookingResponse
     {

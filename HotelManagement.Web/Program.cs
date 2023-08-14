@@ -1,3 +1,5 @@
+using FluentValidation.AspNetCore;
+using HotelManagement.Domain;
 using HotelManagement.Entities;
 using HotelManagement.Operations;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +21,9 @@ namespace Api.Hotel.Management
             builder.Services.AddDbContext<HotelManagementDbContext>(
                 options => options.UseSqlServer("name=ConnectionStrings:HotelManagementDbContext"));
 
+            //Register project services
             OperationsServices.Add(builder.Services);
+            DomainServices.Add(builder.Services);
 
             builder.Services.AddScoped<IHotelManagementDbContext, HotelManagementDbContext>();
 
