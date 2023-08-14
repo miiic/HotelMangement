@@ -1,8 +1,6 @@
-using FluentValidation.AspNetCore;
 using HotelManagement.Domain;
-using HotelManagement.Entities;
 using HotelManagement.Operations;
-using Microsoft.EntityFrameworkCore;
+using HotelManagement.Infrastructure;
 
 namespace Api.Hotel.Management
 {
@@ -18,15 +16,11 @@ namespace Api.Hotel.Management
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<HotelManagementDbContext>(
-                options => options.UseSqlServer("name=ConnectionStrings:HotelManagementDbContext"));
 
             //Register project services
-            OperationsServices.Add(builder.Services);
-            DomainServices.Add(builder.Services);
-
-            builder.Services.AddScoped<IHotelManagementDbContext, HotelManagementDbContext>();
-
+            builder.Services.AddOperationsServices();
+            builder.Services.AddDomainServices();
+            builder.Services.AddInfrastructureServices();
 
             var app = builder.Build();
 

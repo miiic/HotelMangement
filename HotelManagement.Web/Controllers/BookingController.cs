@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 using HotelManagement.Domain.Models.Requests;
-using HotelManagement.Entities.Entities;
+using HotelManagement.Domain.Entities;
 using HotelManagement.Operations.Commands;
 using HotelManagement.Operations.Queries;
 using MediatR;

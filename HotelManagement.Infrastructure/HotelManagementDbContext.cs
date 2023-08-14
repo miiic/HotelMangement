@@ -1,7 +1,8 @@
-﻿using HotelManagement.Entities.Entities;
+﻿using HotelManagement.Domain.Entities;
+using HotelManagement.Operations.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace HotelManagement.Entities
+namespace HotelManagement.Infrastructure
 {
     public class HotelManagementDbContext : DbContext, IHotelManagementDbContext
     {

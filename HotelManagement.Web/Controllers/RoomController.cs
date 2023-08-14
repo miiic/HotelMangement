@@ -1,4 +1,4 @@
-﻿using HotelManagement.Entities.Entities;
+﻿using HotelManagement.Domain.Entities;
 using HotelManagement.Operations.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

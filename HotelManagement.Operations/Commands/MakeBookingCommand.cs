@@ -1,6 +1,6 @@
-﻿using HotelManagement.Domain.Models.Responses;
-using HotelManagement.Entities;
-using HotelManagement.Entities.Entities;
+﻿using HotelManagement.Domain.Entities;
+using HotelManagement.Domain.Models.Responses;
+using HotelManagement.Operations.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 

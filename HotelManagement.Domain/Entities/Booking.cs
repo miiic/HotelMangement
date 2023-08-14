@@ -1,4 +1,4 @@
-﻿namespace HotelManagement.Entities.Entities
+﻿namespace HotelManagement.Domain.Entities
 {
     public class Booking
     {
