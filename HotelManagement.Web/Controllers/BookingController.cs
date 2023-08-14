@@ -2,6 +2,7 @@
 using HotelManagement.Domain.Models.Requests;
 using HotelManagement.Entities.Entities;
 using HotelManagement.Operations.Commands;
+using HotelManagement.Operations.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -22,7 +23,7 @@ namespace HotelManagement.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Hotel>> Get([FromBody] MakeBookingRequest request, CancellationToken ct = default)
+        public async Task<ActionResult<Hotel>> Post([FromBody] MakeBookingRequest request, CancellationToken ct = default)
         {
             var validationResult = await _validator.ValidateAsync(request);
             if (!validationResult.IsValid)
@@ -32,5 +33,14 @@ namespace HotelManagement.Web.Controllers
             var result = await _mediator.Send(new MakeBookingCommand(request.RoomId, request.Arrival, request.Departure), ct);
             return Ok(result);
         }
+
+        [HttpGet]
+        public async Task<ActionResult<Booking>> Get(int bookingId, CancellationToken ct = default)
+        {
+            var result = await _mediator.Send(new GetBookingByIdQuery(bookingId), ct);
+            return Ok(result);
+        }
+
+
     }
 }

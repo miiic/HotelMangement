@@ -26,8 +26,7 @@ namespace HotelManagement.Operations.Queries
 
         public async Task<Hotel> Handle(GetHotelByNameQuery request, CancellationToken ct)
         {
-            return await _context.Hotels
-                .Where(h => h.Name == request.Name).FirstOrDefaultAsync(ct);
+            return await _context.Hotels.FirstOrDefaultAsync(h => h.Name == request.Name, ct);
         }
     }
 }
