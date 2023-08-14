@@ -1,5 +1,5 @@
 ﻿using HotelManagement.Entities.Entities;
-using HotelManagement.Operations.Queries;
+using HotelManagement.Operations.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,9 +17,9 @@ namespace HotelManagement.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult<Hotel> Get(string name, CancellationToken ct = default)
+        public ActionResult<Hotel> Get(int roomId, DateTime arrival, DateTime departure, CancellationToken ct = default)
         {
-            return Ok(_mediator.Send(new GetHotelByNameQuery(name), ct));
+            return Ok(_mediator.Send(new MakeBookingCommand(roomId, arrival, departure), ct));
         }
     }
 }

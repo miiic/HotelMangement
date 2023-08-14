@@ -15,10 +15,11 @@ namespace HotelManagement.Web.Controllers
         {
             _mediator = mediator;
         }
+
         [HttpGet]
-        public ActionResult<Hotel> Get(string name, CancellationToken ct = default)
+        public ActionResult<Hotel> Get(string hotelName, int occupancy, DateTime arrival, DateTime departure, CancellationToken ct = default)
         {
-            return Ok(_mediator.Send(new GetHotelByNameQuery(name), ct));
+            return Ok(_mediator.Send(new GetAvailableRoomsQuery(hotelName, occupancy, arrival, departure), ct));
         }
     }
 }
