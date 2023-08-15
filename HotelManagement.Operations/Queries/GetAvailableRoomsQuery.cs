@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Domain.Entities;
 using HotelManagement.Domain.Models.Responses;
+using HotelManagement.Operations.Extensions;
 using HotelManagement.Operations.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -38,7 +39,7 @@ namespace HotelManagement.Operations.Queries
                     (r.Hotel.Name != null && r.Hotel.Name == request.HotelName) &&
                     r.Capacity >= request.Occupancy
                 )
-               .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure))
+               .WhereNonOverlappingAvailability(request.Arrival, request.Departure)
                .Select(r => new RoomResponseItem
                {
                    RoomId = r.Id,

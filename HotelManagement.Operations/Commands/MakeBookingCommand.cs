@@ -1,5 +1,6 @@
 ﻿using HotelManagement.Domain.Entities;
 using HotelManagement.Domain.Models.Responses;
+using HotelManagement.Operations.Extensions;
 using HotelManagement.Operations.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -34,7 +35,8 @@ namespace HotelManagement.Operations.Commands
         {
             var availableRoom = await _context.Rooms
                .Where(r => r.Id == request.RoomId)
-               .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure)).FirstOrDefaultAsync(ct);
+               .WhereNonOverlappingAvailability(request.Arrival, request.Departure)
+               .FirstOrDefaultAsync(ct);
 
             if (availableRoom != null)
             {
