@@ -1,11 +1,12 @@
 ﻿using HotelManagement.Domain.Entities;
+using HotelManagement.Domain.Models.Responses;
 using HotelManagement.Operations.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Operations.Queries
 {
-    public class GetAvailableRoomsQuery : IRequest<ICollection<Room>>
+    public class GetAvailableRoomsQuery : IRequest<GetAvailableRoomsResponse>
     {
         public GetAvailableRoomsQuery(string hotelName, int occupancy, DateTime arrival, DateTime departure)
         {
@@ -21,7 +22,7 @@ namespace HotelManagement.Operations.Queries
         public DateTime Departure { get; set; }
     }
 
-    public class GetAvailableRoomsQueryHandler : IRequestHandler<GetAvailableRoomsQuery, ICollection<Room>>
+    public class GetAvailableRoomsQueryHandler : IRequestHandler<GetAvailableRoomsQuery, GetAvailableRoomsResponse>
     {
         private readonly IHotelManagementDbContext _context;
 
@@ -30,14 +31,25 @@ namespace HotelManagement.Operations.Queries
             _context = context;
         }
 
-        public async Task<ICollection<Room>> Handle(GetAvailableRoomsQuery request, CancellationToken ct)
+        public async Task<GetAvailableRoomsResponse> Handle(GetAvailableRoomsQuery request, CancellationToken ct)
         {
-            return await _context.Rooms
+            var availableRooms = await _context.Rooms
                .Where(r =>
-                    r.Hotel.Name == request.HotelName &&
+                    (r.Hotel.Name != null && r.Hotel.Name == request.HotelName) &&
                     r.Capacity >= request.Occupancy
                 )
-               .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure)).ToListAsync(ct);
+               .Where(r => r.Bookings.All(b => b.Departure <= request.Arrival || b.Arrival >= request.Departure))
+               .Select(r => new RoomResponseItem
+               {
+                   RoomId = r.Id,
+                   Capacity = r.Capacity,
+                   HotelName = r.Hotel.Name,
+               }).ToListAsync(ct);
+
+            return new GetAvailableRoomsResponse
+            {
+                AvailableRooms = availableRooms
+            };
         }
     }
 }

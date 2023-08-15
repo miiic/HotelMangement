@@ -1,11 +1,11 @@
-﻿using HotelManagement.Domain.Entities;
+﻿using HotelManagement.Domain.Models.Responses;
 using HotelManagement.Operations.Interfaces;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Operations.Queries
 {
-    public class GetBookingByIdQuery : IRequest<Booking>
+    public class GetBookingByIdQuery : IRequest<GetBookingResponse>
     {
         public GetBookingByIdQuery(int bookingId)
         {
@@ -15,7 +15,7 @@ namespace HotelManagement.Operations.Queries
         public int BookingId { get; set; }
     }
 
-    public class GetBookingByIdQueryHandler : IRequestHandler<GetBookingByIdQuery, Booking>
+    public class GetBookingByIdQueryHandler : IRequestHandler<GetBookingByIdQuery, GetBookingResponse>
     {
 
         private readonly IHotelManagementDbContext _context;
@@ -25,10 +25,16 @@ namespace HotelManagement.Operations.Queries
             _context = context;
         }
 
-        public Task<Booking> Handle(GetBookingByIdQuery request, CancellationToken ct)
+        public Task<GetBookingResponse> Handle(GetBookingByIdQuery request, CancellationToken ct)
         {
-            //.Include(b => b.Room) use DTO to decouple this and avoid cylical reference
-            return _context.Bookings.FirstOrDefaultAsync(b => b.Id == b.Id, ct);
+            return _context.Bookings.Select(b => new GetBookingResponse
+                {
+                    BookingId = b.Id,
+                    RoomCapacity = b.Room.Capacity,
+                    Arrival = b.Arrival,
+                    Departure = b.Departure,
+                    HotelName = b.Room.Hotel.Name
+                }).FirstOrDefaultAsync(b => b.BookingId == request.BookingId, ct);
         }
     }
 }

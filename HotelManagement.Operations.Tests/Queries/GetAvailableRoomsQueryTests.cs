@@ -23,11 +23,11 @@ namespace HotelManagement.Operations.Tests.Queries
             var handler = new GetAvailableRoomsQueryHandler(context);
 
             //Act
-            var availableRooms = await handler.Handle(query, CancellationToken.None);
+            var result = await handler.Handle(query, CancellationToken.None);
 
             //Assert
-            availableRooms.Count.Should().Be(2);
-            availableRooms.Select(r => r.Capacity).Should().AllSatisfy(c => c.Should().BeGreaterThanOrEqualTo(1));
+            result.AvailableRooms.Count.Should().Be(2);
+            result.AvailableRooms.Select(r => r.Capacity).Should().AllSatisfy(c => c.Should().BeGreaterThanOrEqualTo(1));
         }
 
         [Fact]
@@ -43,11 +43,11 @@ namespace HotelManagement.Operations.Tests.Queries
             var handler = new GetAvailableRoomsQueryHandler(context);
 
             //Act
-            var availableRooms = await handler.Handle(query, CancellationToken.None);
+            var result = await handler.Handle(query, CancellationToken.None);
 
             //Assert
-            availableRooms.Count.Should().Be(2);
-            availableRooms.Select(r => r.Capacity).Should().AllSatisfy(c => c.Should().BeGreaterThanOrEqualTo(2));
+            result.AvailableRooms.Count.Should().Be(2);
+            result.AvailableRooms.Select(r => r.Capacity).Should().AllSatisfy(c => c.Should().BeGreaterThanOrEqualTo(2));
         }
 
         [Fact]
@@ -63,11 +63,11 @@ namespace HotelManagement.Operations.Tests.Queries
             var handler = new GetAvailableRoomsQueryHandler(context);
 
             //Act
-            var availableRooms = await handler.Handle(query, CancellationToken.None);
+            var result = await handler.Handle(query, CancellationToken.None);
 
             //Assert
-            availableRooms.Count.Should().Be(1);
-            availableRooms.Select(r => r.Capacity).Should().AllSatisfy(c => c.Should().BeGreaterThanOrEqualTo(3));
+            result.AvailableRooms.Count.Should().Be(1);
+            result.AvailableRooms.Select(r => r.Capacity).Should().AllSatisfy(c => c.Should().BeGreaterThanOrEqualTo(3));
         }
     }
 }

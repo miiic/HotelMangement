@@ -35,9 +35,9 @@ namespace HotelManagement.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Booking>> Get(int bookingId, CancellationToken ct = default)
+        public async Task<ActionResult<Booking>> Get(int id, CancellationToken ct = default)
         {
-            var result = await _mediator.Send(new GetBookingByIdQuery(bookingId), ct);
+            var result = await _mediator.Send(new GetBookingByIdQuery(id), ct);
             return Ok(result);
         }
 

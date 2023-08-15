@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagement.Operations.Commands
 {
-    public class MakeBookingCommand : IRequest<BookingResponse>
+    public class MakeBookingCommand : IRequest<MakeBookingResponse>
     {
         public MakeBookingCommand(int roomId, DateTime arrival, DateTime departure)
         {
@@ -21,7 +21,7 @@ namespace HotelManagement.Operations.Commands
 
     }
 
-    public class MakeBookingCommandHandler : IRequestHandler<MakeBookingCommand, BookingResponse>
+    public class MakeBookingCommandHandler : IRequestHandler<MakeBookingCommand, MakeBookingResponse>
     {
         private readonly IHotelManagementDbContext _context;
 
@@ -30,7 +30,7 @@ namespace HotelManagement.Operations.Commands
             _context = context;
         }
 
-        public async Task<BookingResponse> Handle(MakeBookingCommand request, CancellationToken ct)
+        public async Task<MakeBookingResponse> Handle(MakeBookingCommand request, CancellationToken ct)
         {
             var availableRoom = await _context.Rooms
                .Where(r => r.Id == request.RoomId)
@@ -46,9 +46,9 @@ namespace HotelManagement.Operations.Commands
                 };
                 _context.Bookings.Add(booking);
                 await _context.SaveChangesAsync(ct);
-                return new BookingResponse { BookingSuccess = true };
+                return new MakeBookingResponse { BookingSuccess = true };
             }
-            return new BookingResponse { BookingSuccess = false };
+            return new MakeBookingResponse { BookingSuccess = false };
         }
     }
 }

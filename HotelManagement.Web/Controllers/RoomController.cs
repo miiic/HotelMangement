@@ -17,9 +17,10 @@ namespace HotelManagement.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult<Hotel> Get(string hotelName, int occupancy, DateTime arrival, DateTime departure, CancellationToken ct = default)
+        public async Task<ActionResult<Hotel>> Get(string hotelName, int occupancy, DateTime arrival, DateTime departure, CancellationToken ct = default)
         {
-            return Ok(_mediator.Send(new GetAvailableRoomsQuery(hotelName, occupancy, arrival, departure), ct));
+            var result = await _mediator.Send(new GetAvailableRoomsQuery(hotelName, occupancy, arrival, departure), ct);
+            return Ok(result);
         }
     }
 }
