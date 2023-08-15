@@ -5,6 +5,7 @@ using HotelManagement.Operations.Commands;
 using HotelManagement.Operations.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using HotelManagement.Domain.Models.Responses;
 
 namespace HotelManagement.Web.Controllers
 {
@@ -23,7 +24,7 @@ namespace HotelManagement.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Hotel>> Post([FromBody] MakeBookingRequest request, CancellationToken ct = default)
+        public async Task<ActionResult<MakeBookingResponse>> Post([FromBody] MakeBookingRequest request, CancellationToken ct = default)
         {
             var validationResult = await _validator.ValidateAsync(request);
             if (!validationResult.IsValid)
