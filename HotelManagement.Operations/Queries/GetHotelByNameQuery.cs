@@ -12,7 +12,7 @@ namespace HotelManagement.Operations.Queries
             Name = name;
         }
 
-        public string Name { get; set; }
+        internal string Name { get; private set; }
     }
 
     public class GetHotelByNameQueryHandler : IRequestHandler<GetHotelByNameQuery, Hotel>

@@ -12,7 +12,7 @@ namespace HotelManagement.Operations.Queries
             BookingId = bookingId;
         }
 
-        public int BookingId { get; set; }
+        internal int BookingId { get; private set; }
     }
 
     public class GetBookingByIdQueryHandler : IRequestHandler<GetBookingByIdQuery, GetBookingResponse>
