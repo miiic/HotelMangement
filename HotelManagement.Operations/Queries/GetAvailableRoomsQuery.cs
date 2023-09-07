@@ -17,10 +17,10 @@ namespace HotelManagement.Operations.Queries
             Departure = departure;
         }
 
-        public string HotelName { get; set; }
-        public int Occupancy { get; set; }
-        public DateTime Arrival { get; set; }
-        public DateTime Departure { get; set; }
+        internal string HotelName { get; private set; }
+        internal int Occupancy { get; private set; }
+        internal DateTime Arrival { get; private set; }
+        internal DateTime Departure { get; private set; }
     }
 
     public class GetAvailableRoomsQueryHandler : IRequestHandler<GetAvailableRoomsQuery, GetAvailableRoomsResponse>

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.21" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\HotelManagement.Domain\HotelManagement.Domain.csproj" />
     <ProjectReference Include="..\HotelManagement.Infrastructure\HotelManagement.Infrastructure.csproj" />
     <ProjectReference Include="..\HotelManagement.Operations\HotelManagement.Operations.csproj" />

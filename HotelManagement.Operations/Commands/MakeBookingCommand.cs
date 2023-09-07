@@ -16,9 +16,9 @@ namespace HotelManagement.Operations.Commands
             Departure = departure;
         }
 
-        public int RoomId { get; set; }
-        public DateTime Arrival { get; set; }
-        public DateTime Departure { get; set; }
+        internal int RoomId { get; private set; }
+        internal DateTime Arrival { get; private set; }
+        internal DateTime Departure { get; private set; }
 
     }
 
