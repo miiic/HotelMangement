@@ -32,7 +32,7 @@ param sku string = 'F1'
 param language string = '.net'
 
 @description('Optional Git Repo URL, if empty a \'hello world\' app will be deploy from the Azure-Samples repo')
-param repoUrl string = ''
+param repoUrl string = 'https://github.com/miiic/HotelMangement'
 
 var appServicePlanName = 'AppServicePlan-${webAppName}'
 var gitRepoReference = {
