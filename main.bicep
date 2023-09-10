@@ -1,6 +1,6 @@
 @description('Web app name.')
 @minLength(2)
-param webAppName string = 'hotel-management-${uniqueString(resourceGroup().id)}'
+param webAppName string = 'api-hotel-management-${uniqueString(resourceGroup().id)}'
 
 @description('Location for all resources.')
 param location string = resourceGroup().location
