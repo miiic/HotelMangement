@@ -19,19 +19,19 @@ steps:
 
 - task: NuGetCommand@2
   inputs:
-    restoreSolution: '$(solution)'
+    restoreSolution: $(solution)
 
 - task: DotNetCoreCLI@2
   displayname: Build solution
   inputs:
   command: build
-    projects: '$(solution)'
-    configuration: '$(buildConfiguration)'
+    projects: $(solution)
+    configuration: $(buildConfiguration)
 
 - task: DotNetCoreCLI@2
   displayName: Run unit tests
   inputs:
     command: test
-    projects: '$(solution)'
+    projects: $(solution)
     publishTestResults: true
-    configuration: '$(buildConfiguration)'
+    configuration: $(buildConfiguration)
