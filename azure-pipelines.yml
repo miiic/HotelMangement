@@ -17,7 +17,7 @@ variables:
 steps:
 
 - task: DotNetCoreCLI@2
-  displayname: Build solution
+  displayName: Build solution
   inputs:
     command: build
     projects: $(solution)
