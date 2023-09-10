@@ -9,7 +9,7 @@ variables:
   location: 'eastus'
   templateFile: './main.bicep'
 pool:
-  name: local
+  name: self-hosted-linux
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
