@@ -17,7 +17,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Tests.Commo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Infrastructure", "HotelManagement.Infrastructure\HotelManagement.Infrastructure.csproj", "{33DDAFDB-4F45-418D-ACDC-4E35B3D04CCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HotelManagement.Tests.Integration", "HotelManagement.Tests.Integration\HotelManagement.Tests.Integration.csproj", "{FBE6070F-8BA3-491B-83BB-BD3814FFB5D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Tests.Integration", "HotelManagement.Tests.Integration\HotelManagement.Tests.Integration.csproj", "{FBE6070F-8BA3-491B-83BB-BD3814FFB5D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{48C2CD27-A1F3-4042-B1C2-28A6D06498C6}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+		infrastructure.yml = infrastructure.yml
+		main.bicep = main.bicep
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
