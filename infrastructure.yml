@@ -4,14 +4,12 @@ trigger:
 name: Deploy Bicep files
 
 variables:
-  vmImageName: 'ubuntu-latest'
-
   azureServiceConnection: 'hotel-management-az-service-connection'
   resourceGroupName: 'hotel-management'
   location: 'eastus'
   templateFile: './main.bicep'
 pool:
-  vmImage: $(vmImageName)
+  name: local
 
 steps:
 - task: AzureResourceManagerTemplateDeployment@3
