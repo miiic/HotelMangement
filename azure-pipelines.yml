@@ -16,7 +16,7 @@ variables:
 
 steps:
 
--task: UseDotNet@2
+- task: UseDotNet@2
   displayname: Use .net SDK
   inputs:
     packageType: sdk
