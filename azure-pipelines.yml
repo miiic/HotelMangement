@@ -33,7 +33,7 @@ steps:
   displayName: Run integration tests
   inputs:
     command: test
-    projects: '**/Tests.Integration/*.csproj'
+    projects: '**/*Tests.Integration/*.csproj'
     publishTestResults: true
     configuration: $(buildConfiguration)
 
@@ -41,6 +41,6 @@ steps:
   displayName: Run unit tests
   inputs:
     command: test
-    projects: '**/*/Tests.csproj'
+    projects: '**/*/*Tests.csproj'
     publishTestResults: true
     configuration: $(buildConfiguration)
