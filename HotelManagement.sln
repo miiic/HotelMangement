@@ -21,8 +21,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HotelManagement.Tests.Integ
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{48C2CD27-A1F3-4042-B1C2-28A6D06498C6}"
 	ProjectSection(SolutionItems) = preProject
-		azure-pipelines.yml = azure-pipelines.yml
 		infrastructure.yml = infrastructure.yml
+		ci.yml = ci.yml
+		keys.bicep = keys.bicep
 		main.bicep = main.bicep
 		vault.bicep = vault.bicep
 	EndProjectSection
