@@ -62,7 +62,7 @@ resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   }
 }
 
-resource key 'Microsoft.KeyVault/vaults/keys@2021-11-01-preview' = [for keyName in keyNames: {
+resource key 'Microsoft.KeyVault/vaults/keys@2022-07-01' = [for keyName in keyNames: {
   parent: vault
   name: keyName
   properties: {
