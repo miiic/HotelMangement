@@ -1,8 +1,8 @@
 @description('The names of the key vault to be created.')
 param name string
 
-@description('The names of the key to be created.')
-param keyName string
+@description('The names of the secret to be created.')
+param secretName string
 
 @description('The location of the resources')
 param location string
@@ -62,13 +62,12 @@ resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   }
 }
 
-resource key 'Microsoft.KeyVault/vaults/keys@2022-07-01' = {
+@secure()
+param secret string = newGuid()
+resource kvSecret 'Microsoft.KeyVault/vaults/secrets@2021-11-01-preview' = {
   parent: vault
-  name: keyName
+  name: secretName
   properties: {
-    kty: keyType
-    keyOps: keyOps
-    keySize: keySize
-    curveName: curveName
+    value: secret
   }
 }
