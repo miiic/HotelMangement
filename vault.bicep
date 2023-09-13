@@ -1,8 +1,8 @@
 @description('The names of the key vault to be created.')
 param name string
 
-@description('The names of the keys to be created.')
-param keyNames string[]
+@description('The names of the key to be created.')
+param keyName string
 
 @description('The location of the resources')
 param location string
@@ -62,7 +62,7 @@ resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   }
 }
 
-resource key 'Microsoft.KeyVault/vaults/keys@2022-07-01' = [for keyName in keyNames: {
+resource key 'Microsoft.KeyVault/vaults/keys@2022-07-01' = {
   parent: vault
   name: keyName
   properties: {
@@ -71,4 +71,4 @@ resource key 'Microsoft.KeyVault/vaults/keys@2022-07-01' = [for keyName in keyNa
     keySize: keySize
     curveName: curveName
   }
-}]
+}
