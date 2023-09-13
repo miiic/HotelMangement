@@ -14,31 +14,6 @@ param location string
 ])
 param skuName string = 'standard'
 
-@description('The JsonWebKeyType of the key to be created.')
-@allowed([
-  'EC'
-  'EC-HSM'
-  'RSA'
-  'RSA-HSM'
-])
-param keyType string = 'RSA'
-
-@description('The permitted JSON web key operations of the key to be created.')
-param keyOps array = []
-
-@description('The size in bits of the key to be created.')
-param keySize int = 2048
-
-@description('The JsonWebKeyCurveName of the key to be created.')
-@allowed([
-  ''
-  'P-256'
-  'P-256K'
-  'P-384'
-  'P-521'
-])
-param curveName string = ''
-
 resource vault 'Microsoft.KeyVault/vaults@2021-11-01-preview' = {
   name: name
   location: location
