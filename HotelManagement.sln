@@ -25,6 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", 
 		ci.yml = ci.yml
 		keys.bicep = keys.bicep
 		main.bicep = main.bicep
+		sql.bicep = sql.bicep
 		vault.bicep = vault.bicep
 	EndProjectSection
 EndProject

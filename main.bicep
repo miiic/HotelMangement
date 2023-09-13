@@ -34,9 +34,29 @@ resource webApp 'Microsoft.Web/sites@2022-03-01' = {
   }
 }
 
+var vaultName = 'kv-hotel-management'
+var keyNames = ['sqlPassword']
 module vaultModule 'vault.bicep' = {
     name: 'keyVault'
     params: {
         location: location
+        name: vaultName
+        keyNames: keyNames
     }
 }
+
+resource kv 'Microsoft.KeyVault/vaults@2022-07-01' existing = {
+  name: vaultName
+}
+
+param sqlServerName string = 'api-hotel-management'
+param sqlAdminLogin string = 'UserHotelManagementAdmin'
+module sql './sql.bicep' = {
+  name: 'deploySQL'
+  params: {
+    sqlServerName: sqlServerName
+    adminLogin: sqlAdminLogin
+    adminPassword: kv.getSecret('sqlPassword')
+  }
+}
+
